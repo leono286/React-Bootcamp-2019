@@ -38,9 +38,10 @@ class MovieCard extends React.Component {
   componentWillUnmount() {
     console.log('I will unmount')
   }
-  
+
   render() {
-    const { id, title, year, image, overview, deleteMovie } = this.props
+    const { id, title, poster_path, overview, deleteMovie } = this.props;
+    const poster_url = `https://image.tmdb.org/t/p/w185_and_h278_bestv2/${poster_path}`;
     return <div className='movie-container'>   
         <div className='favourite-container'>
             <button onClick={this.handleCheck} className='favourite-button'>
@@ -51,9 +52,9 @@ class MovieCard extends React.Component {
             </button>
         </div>
       <h1>{title}</h1>
-      <div>{year}</div>
+      {/* <div>{year}</div> */}
       <div className='overview-container'>
-        <img className='overview-img' src={image} alt='Movie' />
+        <img className='overview-img' src={poster_url} alt='Movie' />
         <p>{overview}</p>
       </div>
     </div>
