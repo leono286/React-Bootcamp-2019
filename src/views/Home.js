@@ -1,6 +1,7 @@
 import React from 'react';
 import moviesData from '../data/movies.json';
 import MovieCard from '../components/MovieCard';
+import MovieForm from '../components/MovieForm'
 
 const API_KEY = '543ab0d9314bbc9b8f0b8d9f64411c9d';
 
@@ -8,6 +9,10 @@ class Home extends React.Component {
   state = {
     ...moviesData
   };
+
+  addMovie = (movie) => {
+    this.setState({ movies: [ ...this.state.movies, movie ] })
+  }
 
   deleteMovie = movieId => {
     this.setState((state, props) => {
@@ -33,6 +38,7 @@ class Home extends React.Component {
     return (
       <div>
         <h1 className='main-title'>Movie App</h1>
+        <MovieForm onSubmit={this.addMovie} />
         <div className='content'>
           {movies.map(movie => (
             <MovieCard
