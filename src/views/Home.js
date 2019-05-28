@@ -38,7 +38,7 @@ class Home extends React.Component {
     return (
       <div>
         <h1 className='main-title'>Movie App</h1>
-        <MovieForm onSubmit={this.addMovie} />
+        <MovieForm onAddMovie={this.addMovie} />
         <div className='content'>
           {movies.map(movie => (
             <MovieCard
