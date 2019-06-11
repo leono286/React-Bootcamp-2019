@@ -1,0 +1,28 @@
+{
+  "users": [
+    {
+      "id": 2001,
+      "firstname": "Leo",
+      "lastname": "Pérez",
+      "email": "leono286@mindyourbussiness.com",
+      "password": "cualquiera",
+      "genre": "M"
+    },
+    {
+      "id": 2002,
+      "firstname": "Pablo",
+      "lastname": "Carrero",
+      "email": "pabloc@mindyourbussiness.com",
+      "password": "cualquiera1",
+      "genre": "M"
+    },
+    {
+      "id": 2003,
+      "firstname": "Leonor",
+      "lastname": "Arias",
+      "email": "leonors@mindyourbussiness.com",
+      "password": "cualquiera2",
+      "genre": "F"
+    }
+  ]
+}

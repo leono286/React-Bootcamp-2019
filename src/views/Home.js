@@ -10,42 +10,48 @@ import MovieCard from '../components/MovieCard'
 import { AuthContext } from '../enhancers/AuthContext'
 
 const WelcomeText = ({ isAuth, name }) =>
-  <div style={{ fontSize: '3em', color: 'white'}}>
+  <div style={{ fontSize: '3em', color: 'white' }}>
     {isAuth ? `Bienvenido a casa ${name}` : 'Go away'}
   </div>
 
 class Home extends React.Component {
   state = {
-   ...moviesData,
+    movies: [],
   }
 
-  static contextType = AuthContext
+  // static contextType = AuthContext
 
   addMovie = (movie) => {
-    this.setState({ movies: [ ...this.state.movies, movie ] })
+    this.setState({ movies: [...this.state.movies, movie] })
   }
 
   deleteMovie = (movieId) => {
     this.setState((state, props) => {
       const movies = state.movies.filter((movie) => movie.id !== movieId)
-      return  {
+      return {
         movies
       }
     })
   }
 
+  componentDidMount() {
+    this.props.fetchMovies();
+    this.props.requestUsers();
+  }
 
-    render() {
-        const { movies } = this.state
-        return <div>
-          <WelcomeText isAuth={this.context.isAuth} name={this.context.name} />
-          <MainLayout>
-            {movies.map((movie) => 
-            <MovieCard deleteMovie={this.deleteMovie} key={movie.id} {...movie} />
-            )}
-          </MainLayout>
-          </div>
-    }
+
+  render() {
+    const { movies } = this.props;
+
+    return <div>
+      <WelcomeText isAuth={this.context.isAuth} name={this.context.name} />
+      <MainLayout>
+        {movies.data.map((movie) =>
+          <MovieCard deleteMovie={this.deleteMovie} key={movie.id} {...movie} />
+        )}
+      </MainLayout>
+    </div>
+  }
 }
 
 export default Home

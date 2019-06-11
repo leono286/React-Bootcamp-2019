@@ -16,13 +16,14 @@ export default class Movie extends React.Component {
         movie: {},
     }
 
-    componentDidMount() {
-        if(this.props.match.params.id) {
-            getMovie(this.props.match.params.id)
-            .then((movie) => {
-                const massagedMovie = massageMovieData(movie)
-                this.setState({ movie: massagedMovie })
-            })
+  componentDidMount() {
+    const { match, movies } = this.props;
+        if(match.params.id) {
+          const movie = movies.data.filter(movie => {
+            return Number(movie.id) === Number(match.params.id);
+          })
+          
+          this.setState({movie: movie[0]})
         }
         
     }
